@@ -4,7 +4,6 @@ const sendMail = (email,user)=> {
 
 var transporter = nodemailer.createTransport({
   service: "gmail",
-
   auth: {
     user: process.env.AUTH_MAIL,
     pass: process.env.AUTH_MAIL_PASSWORD,
@@ -13,7 +12,7 @@ var transporter = nodemailer.createTransport({
 
 
 var mailOptions = {
-  from: "mohammedshanshajahan76@gmail.com",
+  from: "E-learn",
   to: email,
   subject:"Account activation Deatails",
   text: `Your account have activated please Login and chose our courses. you selected course is ${user.course}`,

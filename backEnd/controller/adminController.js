@@ -1,5 +1,6 @@
-const SendmailTransport = require("nodemailer/lib/sendmail-transport");
+
 const Admin = require("../model/adminModel");
+
 const User = require("../model/userModel");
 const sendMail = require("./mail");
 
@@ -34,7 +35,7 @@ const login = async (req, res) => {
   }
 };
 
-// @desc admin addcourse
+// @desc admin approve user
 // @route POST api/admin/approve_user
 // access private
 const approveUser = async(req,res) => { 
@@ -47,6 +48,9 @@ const approveUser = async(req,res) => {
     res.status(400).json({ error: error.message})
   }
 }
+
+
+
 
 
 module.exports = {
