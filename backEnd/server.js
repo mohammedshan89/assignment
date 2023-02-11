@@ -21,6 +21,9 @@ app.use(cors())
 // })
 app.use('/api/user',require('./routes/userRouter'))
 app.use('/api/admin',require('./routes/adminRouter'))
+app.use('/api/course',require('./routes/courseRouter'))
+app.use("/api/class", require("./routes/classRouter"));
+
 //connect to DB and listning port
 connectToDb(()=>{
    app.listen(process.env.PORT, () => {
