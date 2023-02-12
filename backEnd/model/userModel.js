@@ -21,7 +21,6 @@ const UserSchema = new Schema({
   },
   course:{
     type:String,
-    required:true
   }
 },{timestamps:true})
 

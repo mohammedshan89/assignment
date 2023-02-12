@@ -56,8 +56,13 @@ const login = async(req,res) => {
     if(!matchPassword){
       throw Error("Password missmatch")
     }
+
+    //user approved by admin check
+    if(!user.approval){
+      throw Error("Please wait your profile is under checking process")
+    }
     //when user login user id saved in users speciic course collection
-    await Course.findOneAndUpdate({coursename:user.course},{$push:{"users":user._id}})
+     await Course.findOneAndUpdate({coursename:user.course},{$push:{"users":user._id}})
     
     res.status(200).json({user,token:createToken(user._id)})
 
