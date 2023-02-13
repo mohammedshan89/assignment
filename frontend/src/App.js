@@ -4,6 +4,7 @@ import AddClass from "./pages/admin/AddClass";
 import AddCourse from "./pages/admin/AddCourse";
 import AdminHome from "./pages/admin/AdminHome";
 import AdminLogin from "./pages/admin/AdminLogin";
+import BookedClass from "./pages/admin/BookedClass";
 import CalssPage from "./pages/admin/CalssPage";
 import Course from "./pages/admin/Course";
 import EditClass from "./pages/admin/EditClass";
@@ -25,6 +26,7 @@ function App() {
     <Route path="/admin/class" element = {<CalssPage/>}/>
     <Route path="/admin/add-class" element ={<AddClass/>}/>
     <Route path="/admin/edit-class" element ={<EditClass/>}/>
+    <Route path ='/admin/book-class' element = {<BookedClass/>}/>
     
     <Route path='/authentication' element= {<Authentication/>}/>
     <Route path= '/' element= {<UserLogin/>}/>
