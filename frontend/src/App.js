@@ -9,6 +9,8 @@ import Course from "./pages/admin/Course";
 import EditClass from "./pages/admin/EditClass";
 import EditCourse from "./pages/admin/EditCourse";
 import Authentication from "./pages/User/Authentication";
+import UserHome from "./pages/User/UserHome";
+import UserLogin from "./pages/User/UserLogin";
 
 function App() {
   return (
@@ -23,9 +25,10 @@ function App() {
     <Route path="/admin/class" element = {<CalssPage/>}/>
     <Route path="/admin/add-class" element ={<AddClass/>}/>
     <Route path="/admin/edit-class" element ={<EditClass/>}/>
-    </Routes>
-    <Routes>
+    
     <Route path='/authentication' element= {<Authentication/>}/>
+    <Route path= '/' element= {<UserLogin/>}/>
+    <Route path= "/home" element= {<UserHome/>}/>
     </Routes>
     </BrowserRouter>    
     </div>

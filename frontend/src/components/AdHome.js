@@ -25,6 +25,7 @@ const handleApprove =async (_id) => {
   try{
     const approve = await axios.post('api/admin/approve_user',{_id})
     console.log(approve)
+    getAllDetails()
   }catch(error){
     console.log(error)
   }

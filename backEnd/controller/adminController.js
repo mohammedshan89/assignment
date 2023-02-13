@@ -10,12 +10,12 @@ const sendMail = require("./mail");
 // @route POST api/admin/signup
 // access private
 const signup = async (req, res) => {
-  const name = "admin@1234";
+  const email = "admin@1234";
   const password = "admin@123";
 
   try {
     //create admin
-    await Admin.create({ name, password });
+    await Admin.create({ email, password });
     res.status(200).json({ message: "admin Created" });
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -26,10 +26,10 @@ const signup = async (req, res) => {
 // @route POST api/admin/login
 // access private
 const login = async (req, res) => {
-  const {name, password} = req.body;
+  const {email, password} = req.body;
   
   try {
-    const admin = await Admin.findOne({ name, password });
+    const admin = await Admin.findOne({email, password });
     if(admin){
     res.status(200).json(admin);
     }else{

@@ -11,13 +11,16 @@ import axios from "../api/axios";
 import { useNavigate } from "react-router-dom";
 
 
-const AdLogin = () => {
-const [name, setName] = useState('')
+const AdLogin = (props) => {
+ const [error,setError] = useState(Boolean)
+const [email, setEmail] = useState('')
 const [password,setPassword] = useState('')
 const navigate = useNavigate()
 const data = {
-  name,password
+  email,password
 }
+
+
 const handleSubmit = async(e)=> {
   e.preventDefault()
 try{
@@ -32,17 +35,40 @@ if(res.data){
   console.log(error)
 }
 }
+
+const handleUserSubmit = async(e)=> {
+  e.preventDefault()
+  try{
+     const user = await axios.post("/api/user/login",data)
+
+    if(user.data){
+  navigate('/home')
+    }
+  
+
+  }catch(error){
+    if(error.response.data.error==="under process"){
+      setError(true);
+    }
+  }
+  setEmail('')
+  setPassword('')
+}
+
   return (
     <MDBContainer className="p-3 my-5 d-flex flex-column w-50">
-    <h1>AdminLogin</h1>
+    {error?<h1>Your application is under checking</h1>:''}
+      {!props.user ? <h1>AdminLogin</h1> : <h1>UserLogin</h1>}
       <MDBInput
         wrapperClass="mb-4"
         label="Email address"
         id="form1"
         type="email"
-        value={name}
-        name='email'
-        onChange={(e)=>{setName(e.target.value)}}
+        value={email}
+        name="email"
+        onChange={(e) => {
+          setEmail(e.target.value);
+        }}
       />
       <MDBInput
         wrapperClass="mb-4"
@@ -51,7 +77,9 @@ if(res.data){
         type="password"
         value={password}
         name="password"
-        onChange={(e)=>{setPassword(e.target.value)}}
+        onChange={(e) => {
+          setPassword(e.target.value);
+        }}
       />
 
       <div className="d-flex justify-content-between mx-3 mb-4">
@@ -61,14 +89,19 @@ if(res.data){
           id="flexCheckDefault"
           label="Remember me"
         />
-        
       </div>
 
-      <MDBBtn onClick={handleSubmit} className="mb-4">Sign in</MDBBtn>
+      {!props.user ? (
+        <MDBBtn onClick={handleSubmit} className="mb-4">
+          Sign in
+        </MDBBtn>
+      ) : (
+        <MDBBtn onClick={handleUserSubmit} className="mb-4">
+          UserLogin
+        </MDBBtn>
+      )}
 
       <div className="text-center">
-       
-
         <div
           className="d-flex justify-content-between mx-auto"
           style={{ width: "40%" }}

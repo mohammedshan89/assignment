@@ -36,7 +36,7 @@ const signup = async(req,res) => {
 }
 
 // @desc user login
-// @route POST api/user/signup
+// @route POST api/user/login
 // access public
 const login = async(req,res) => {
   const {email, password} = req.body;
@@ -59,7 +59,7 @@ const login = async(req,res) => {
 
     //user approved by admin check
     if(!user.approval){
-      throw Error("Please wait your profile is under checking process")
+      throw Error("under process")
     }
     //when user login user id saved in users speciic course collection
      await Course.findOneAndUpdate({coursename:user.course},{$push:{"users":user._id}})
